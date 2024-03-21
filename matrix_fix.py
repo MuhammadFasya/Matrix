@@ -1,10 +1,10 @@
-def input_matrix(rows, cols):
+ef input_matrix(rows, cols):
   matrix = []
-  print("Masukkan elemen-elemen matriks:")
+  print("Enter the elements of the matrix:")
   for i in range(rows):
       row = []
       for j in range(cols):
-          element = float(input(f"Masukkan elemen baris {i+1} kolom {j+1}: "))
+          element = float(input(f"Enter element at row {i+1} column {j+1}: "))
           row.append(element)
       matrix.append(row)
   return matrix
@@ -18,7 +18,7 @@ def print_matrix(matrix):
 
 def add_matrices(matrix1, matrix2):
   if len(matrix1) != len(matrix2) or len(matrix1[0]) != len(matrix2[0]):
-      print("\nOperasi penjumlahan tidak dapat dilakukan karena ukuran matriks tidak sama.")
+      print("\nAddition operation cannot be performed because the sizes of the matrices are not the same.")
       return None
 
   result = []
@@ -28,13 +28,13 @@ def add_matrices(matrix1, matrix2):
           row.append(matrix1[i][j] + matrix2[i][j])
       result.append(row)
 
-  print("\nHasil penjumlahan matriks:")
+  print("\nResult of matrix addition:")
   print_matrix(result)
   return result
 
 def subtract_matrices(matrix1, matrix2):
   if len(matrix1) != len(matrix2) or len(matrix1[0]) != len(matrix2[0]):
-      print("\nOperasi pengurangan tidak dapat dilakukan karena ukuran matriks tidak sama.")
+      print("\nSubtraction operation cannot be performed because the sizes of the matrices are not the same.")
       return None
 
   result = []
@@ -44,13 +44,13 @@ def subtract_matrices(matrix1, matrix2):
           row.append(matrix1[i][j] - matrix2[i][j])
       result.append(row)
 
-  print("\nHasil pengurangan matriks:")
+  print("\nResult of matrix subtraction:")
   print_matrix(result)
   return result
 
 def multiply_matrices(matrix1, matrix2):
   if len(matrix1[0]) != len(matrix2):
-      print("\nOperasi perkalian tidak dapat dilakukan karena jumlah kolom matriks pertama tidak sama dengan jumlah baris matriks kedua.")
+      print("\nMultiplication operation cannot be performed because the number of columns in the first matrix is not equal to the number of rows in the second matrix.")
       return None
 
   result = []
@@ -63,19 +63,19 @@ def multiply_matrices(matrix1, matrix2):
           row.append(total)
       result.append(row)
 
-  print("\nHasil perkalian matriks:")
+  print("\nResult of matrix multiplication:")
   print_matrix(result)
   return result
 
 def transpose_matrix(matrix):
   result = [[matrix[j][i] for j in range(len(matrix))] for i in range(len(matrix[0]))]
-  print("\nHasil transpose matriks:")
+  print("\nResult of matrix transpose:")
   print_matrix(result)
   return result
 
 def determinant_matrix(matrix):
   if len(matrix) != len(matrix[0]):
-      print("\nDeterminan hanya dapat dihitung untuk matriks persegi.")
+      print("\nDeterminant can only be calculated for square matrices.")
       return None
 
   def recursive_determinant(matrix):
@@ -91,17 +91,17 @@ def determinant_matrix(matrix):
           return det
 
   det = recursive_determinant(matrix)
-  print(f"\nDeterminan matriks: {det}")
+  print(f"\nDeterminant of the matrix: {det}")
   return det
 
 def inverse_matrix(matrix):
   if len(matrix) != len(matrix[0]):
-      print("\nMatriks invers hanya dapat dihitung untuk matriks persegi.")
+      print("\nInverse matrix can only be calculated for square matrices.")
       return None
 
   det = determinant_matrix(matrix)
   if det == 0:
-      print("\nMatriks tidak memiliki invers.")
+      print("\nThe matrix does not have an inverse.")
       return None
 
   def cofactor(matrix, i, j):
@@ -115,26 +115,26 @@ def inverse_matrix(matrix):
           row.append(cofactor(matrix, i, j) / det)
       inv.append(row)
 
-  print("\nMatriks invers:")
+  print("\nInverse matrix:")
   print_matrix(inv)
   return inv
 
 def main():
   while True:
-      print("\nPilih operasi matriks:")
-      print("1. Penjumlahan, pengurangan, perkalian matriks")
-      print("2. Transpose matriks")
-      print("3. Mencari Determinan matriks")
-      print("4. Mencari Invers matriks")
-      choice = input("Masukkan pilihan (1/2/3/4): ")
+      print("\nChoose matrix operation:")
+      print("1. Addition, subtraction, multiplication of matrices")
+      print("2. Transpose of matrix")
+      print("3. Calculate determinant of matrix")
+      print("4. Calculate inverse of matrix")
+      choice = input("Enter choice (1/2/3/4): ")
 
       if choice == '1':
-          rows1 = int(input("Masukkan jumlah baris matriks pertama: "))
-          cols1 = int(input("Masukkan jumlah kolom matriks pertama: "))
+          rows1 = int(input("Enter the number of rows of the first matrix: "))
+          cols1 = int(input("Enter the number of columns of the first matrix: "))
           matrix1 = input_matrix(rows1, cols1)
 
-          rows2 = int(input("Masukkan jumlah baris matriks kedua: "))
-          cols2 = int(input("Masukkan jumlah kolom matriks kedua: "))
+          rows2 = int(input("Enter the number of rows of the second matrix: "))
+          cols2 = int(input("Enter the number of columns of the second matrix: "))
           matrix2 = input_matrix(rows2, cols2)
 
           add_matrices(matrix1, matrix2)
@@ -142,31 +142,31 @@ def main():
           multiply_matrices(matrix1, matrix2)
 
       elif choice == '2':
-          rows = int(input("Masukkan jumlah baris matriks: "))
-          cols = int(input("Masukkan jumlah kolom matriks: "))
+          rows = int(input("Enter the number of rows of the matrix: "))
+          cols = int(input("Enter the number of columns of the matrix: "))
           matrix = input_matrix(rows, cols)
           transpose_matrix(matrix)
 
       elif choice == '3':
-          rows = int(input("Masukkan jumlah baris matriks: "))
-          cols = int(input("Masukkan jumlah kolom matriks: "))
+          rows = int(input("Enter the number of rows of the matrix: "))
+          cols = int(input("Enter the number of columns of the matrix: "))
           matrix = input_matrix(rows, cols)
           determinant_matrix(matrix)
 
       elif choice == '4':
-          rows = int(input("Masukkan jumlah baris matriks: "))
-          cols = int(input("Masukkan jumlah kolom matriks: "))
+          rows = int(input("Enter the number of rows of the matrix: "))
+          cols = int(input("Enter the number of columns of the matrix: "))
           matrix = input_matrix(rows, cols)
           inverse_matrix(matrix)
 
       else:
-          print("\nPilihan tidak valid.")
+          print("\nInvalid choice.")
 
-      repeat = input("\nApakah Anda ingin melakukan operasi matriks lainnya? (ya/tidak): ")
-      if repeat.lower() != 'ya':
+      repeat = input("\nDo you want to perform another matrix operation? (yes/no): ")
+      if repeat.lower() != 'yes':
           break
 
-  print("Terimakasih! Good luck.")
+  print("Thank you! Good luck.")
 
 if __name__ == "__main__":
   main()
